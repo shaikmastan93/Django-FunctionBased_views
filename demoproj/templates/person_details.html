@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Details</title>
+    <style>
+        /* Your styling here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Person Details</h1>
+        <div>
+            <p><strong>Name:</strong> {{ person.name }}</p>
+            <p><strong>Professions:</strong> {{ person.job }}</p>
+            <p><strong>Date Of Birth:</strong> {{ person.birth_date }}</p>
+        </div>
+        <a href="{% url 'person_list' %}">Back to List</a>
+    </div>
+</body>
+</html>

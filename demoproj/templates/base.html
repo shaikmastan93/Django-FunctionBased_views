@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Persons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+            font-size: 16px;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .actions {
+            display: flex;
+            align-items: center;
+        }
+        .actions a {
+            margin-right: 10px;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .actions a.edit {
+            background-color: #007bff;
+        }
+        .actions a.edit:hover {
+            background-color: #0056b3;
+        }
+        .actions a.delete {
+            background-color: #dc3545;
+        }
+        .actions a.delete:hover {
+            background-color: #c82333;
+        }
+        .actions a.details {
+            background-color: #28a745;
+        }
+        .actions a.details:hover {
+            background-color: #218838;
+        }
+        .add-button {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .add-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>List of Persons</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Professions</th>
+                    <th>Date Of Birth</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in persons %}
+                <tr>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.job }}</td>
+                    <td>{{ person.birth_date }}</td>
+                    <td class="actions">
+                     
+                        <a href="{% url 'edit_person' person.id %}" class="edit">Edit</a>
+                        <a href="{% url 'delete_person' person.id %}" class="delete">Delete</a>
+                        <a href="{% url 'retrieve_person' person.id %}" class="details">Details</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No persons found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'add_person' %}" class="add-button">Add Person</a>
+    </div>
+</body>
+</html>
